@@ -1,0 +1,13 @@
+.img_wrap {
+  width: 100vw;
+  height: calc(100vh - 70px);
+  background: url(../../common/icons/background.png) no-repeat center center fixed;
+  background-size: cover;
+}
+
+@media screen and (max-width: 992px) {
+  .img_wrap {
+    width: 100vw;
+    height: calc(100vh - 200px);
+  }
+}
