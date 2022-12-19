@@ -1,6 +1,6 @@
 import React from 'react';
 import './Header.scss';
-import menuIcon from '../../common/icons/menu-icon.svg';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   function toggleClick() {
@@ -14,28 +14,22 @@ const Header = () => {
         <div className="navbar">
           <div className="logo-toggle-container">
             <div className="logo">Online Museum</div>
-            <img
-              className="toggle-box"
-              src={menuIcon}
-              alt="menuIcon"
-              onClick={() => toggleClick()}
-            />
+            <div className="burger" onClick={() => toggleClick()}>
+              <span> </span>
+            </div>
           </div>
           <ul className="menu">
             <li>
-              <a href="#">Home</a>
+              <Link to="/">Home</Link>
             </li>
             <li>
-              <a href="#">Museums</a>
+              <Link to="/museums">Museums</Link>
             </li>
             <li>
-              <a href="#">Contacts</a>
+               <Link to="/contacts">Contacts</Link>
             </li>
             <li>
-              <a href="#">Login</a>
-            </li>
-            <li>
-              <a href="#">Sign Up</a>
+               <Link to="/auth">Login / Sign Up</Link>
             </li>
           </ul>
         </div>
