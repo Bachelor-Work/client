@@ -1,12 +1,14 @@
 import React from 'react';
-import background from '../../common/icons/background.png';
 import './Main.scss';
 
 const Main = () => {
   return (
     <div>
       <div className="img_wrap">
-       
+        <div className="wrapper">
+          <div className="border-text">brave.UKRAINIAN</div>
+          <a href='' className="button">Go to Museums</a>
+        </div>
       </div>
     </div>
   );
