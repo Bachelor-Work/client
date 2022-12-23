@@ -46,13 +46,6 @@
   text-align: right;
 }
 
-@media screen and (max-width: 1024px) {
-  .navigation .menu {
-    display: block !important;
-    height: auto !important;
-  }
-}
-
 .navigation .menu li {
   display: inline-block;
   margin: 5px 5px;
@@ -94,18 +87,14 @@ li a:hover::before {
   float: left;
 }
 
-.navigation .menu li a:hover {
-  /*background-color: $secondary-color;
-  color: $primary-color;
-  transition: linear 0.3s;
-  cursor: pointer;*/
-}
-
 @media screen and (max-width: 992px) {
   .navigation {
     position: fixed;
+    height: 78px;
+    overflow: hidden;
     z-index: 1001;
   }
+
   .navigation .navbar .logo-toggle-container {
     position: static;
     transform: translate(0%, 0%);
@@ -173,6 +162,8 @@ li a:hover::before {
 
   .navigation .menu {
     text-align: center;
+    display: none !important;
+    transition: 0.2s;
   }
 
   .navigation .menu li {
@@ -190,16 +181,6 @@ li a:hover::before {
     color: $secondary-color;
   }
 
-  .navigation .menu {
-    display: none !important;
-    transition: 0.2s;
-  }
-
-  .navigation {
-    height: 78px;
-    overflow: hidden;
-  }
-
   .navigation.active {
     height: 270px;
   }
@@ -210,95 +191,4 @@ li a:hover::before {
   li a::before {
     width: 0%;
   }
-  
 }
-
-/*.header {
-  background-color: $primary-color;
-  width: 100%;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  font-family: 'Roboto', sans-serif;
-  font-weight: 300;
-  font-size: 18px;
-  position: relative;
-}
-
-@media (max-width: 1200px) {
-  .container {
-    max-width: 970px;
-  }
-}
-@media (max-width: 992px) {
-  .container {
-    max-width: 750px;
-  }
-}
-@media (max-width: 767px) {
-  .hamburger {
-    display: block;
-    cursor: pointer;
-
-    .line {
-      width: 30px;
-      height: 3px;
-      background-color: $secondary-color;
-      margin: 6px;
-    }
-  }
-
-  .container {
-    max-width: none;
-    position: absolute;
-    top: 80px;
-    left: 0;
-    right: 0;
-    width: 100vw;
-    transition: 0.2s;
-    background-color: red;
-  }
-  .header {
-    display: flex;
-  }
-
-  .logo {
-    position: inherit;
-    font-family: 'Inika', serif;
-    font-size: 28px;
-    top: 0;
-    left: 0;
-  }
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-
-  ul {
-    text-align: right;
-  }
-
-  li {
-    display: inline-block;
-    padding: 20px 15px;
-
-    &:nth-child(1) {
-      float: left;
-    }
-    &:nth-child(2) {
-      float: left;
-    }
-    &:nth-child(3) {
-      float: left;
-    }
-  }
-}
-.logo {
-  position: absolute;
-  font-family: 'Inika', serif;
-  font-size: 28px;
-  z-index: 1001;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-*/
