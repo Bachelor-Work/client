@@ -1,20 +1,23 @@
-import React from 'react';
-import './Header.scss';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import cx from 'classnames';
+
+import './Header.scss';
 
 const Header = () => {
+  const [menuActive, setMenuActive] = useState(false);
+
   function toggleClick() {
-    const menu = document.querySelector('.navigation');
-    menu.classList.toggle('active');
+    setMenuActive((prevMenuActive) => !prevMenuActive);
   }
 
   return (
-    <div className="navigation">
+    <div className={cx('navigation', { active: menuActive })}>
       <div className="container">
         <div className="navbar">
           <div className="logo-toggle-container">
             <div className="logo">Online Museum</div>
-            <div className="burger" onClick={() => toggleClick()}>
+            <div className="burger" onClick={toggleClick}>
               <span> </span>
             </div>
           </div>
@@ -26,10 +29,10 @@ const Header = () => {
               <Link to="/museums">Museums</Link>
             </li>
             <li>
-               <Link to="/contacts">Contacts</Link>
+              <Link to="/contacts">Contacts</Link>
             </li>
             <li>
-               <Link to="/auth">Login / Sign Up</Link>
+              <Link to="/auth">Login / Sign Up</Link>
             </li>
           </ul>
         </div>
