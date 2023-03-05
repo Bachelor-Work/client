@@ -1,8 +1,8 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
-import './App.css';
+import { Route, Routes } from 'react-router-dom';
+
 import { Header } from './components';
-import { Main } from './Pages';
+import { Main } from './pages';
 
 const App = () => {
   return (

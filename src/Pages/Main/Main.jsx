@@ -7,7 +7,9 @@ const Main = () => {
       <div className="img_wrap">
         <div className="wrapper">
           <div className="border-text">brave.UKRAINIAN</div>
-          <a href='' className="button">Go to Museums</a>
+          <a href="#" className="button">
+            Go to Museums
+          </a>
         </div>
       </div>
     </div>
