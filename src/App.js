@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import { Header } from './components';
-import { Main } from './pages';
+import { Main, Scene } from './pages';
 
 const App = () => {
   return (
@@ -10,6 +10,7 @@ const App = () => {
       <Header />
       <Routes>
         <Route path="/" element={<Main />} />
+        <Route path="/scene" element={<Scene />} />
       </Routes>
     </div>
   );

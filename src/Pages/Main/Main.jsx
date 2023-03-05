@@ -1,18 +1,20 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import './Main.scss';
 
 const Main = () => {
   return (
-    <div>
+    <main>
       <div className="img_wrap">
         <div className="wrapper">
           <div className="border-text">brave.UKRAINIAN</div>
-          <a href="#" className="button">
+          <Link to="/" className="button">
             Go to Museums
-          </a>
+          </Link>
         </div>
       </div>
-    </div>
+    </main>
   );
 };
 
