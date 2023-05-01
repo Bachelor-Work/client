@@ -7,12 +7,10 @@ const Main = () => {
   return (
     <main>
       <div className="img_wrap">
-        <div className="wrapper">
           <div className="border-text">brave.UKRAINIAN</div>
-          <Link to="/" className="button">
+          <Link to="/museums" className="button">
             Go to Museums
           </Link>
-        </div>
       </div>
     </main>
   );
