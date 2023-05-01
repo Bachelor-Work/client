@@ -1,8 +1,25 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import cx from 'classnames';
 
 import './Header.scss';
+
+const CustomLink = ({ href, title }) => {
+  const location = useLocation();
+
+  if (href === location.pathname) console.log(href);
+
+  return (
+    <li>
+      <Link
+        to={href}
+        className={href === location.pathname ? 'activeLink' : ''}
+      >
+        {title}
+      </Link>
+    </li>
+  );
+};
 
 const Header = () => {
   const [menuActive, setMenuActive] = useState(false);
@@ -22,18 +39,10 @@ const Header = () => {
             </div>
           </div>
           <ul className="menu">
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/museums">Museums</Link>
-            </li>
-            <li>
-              <Link to="/contacts">Contacts</Link>
-            </li>
-            <li>
-              <Link to="/auth">Login / Sign Up</Link>
-            </li>
+            <CustomLink href="/" title="Home" />
+            <CustomLink href="/museums" title="Museums" />
+            <CustomLink href="/contacts" title="Contacts" />
+            <CustomLink href="/auth" title="Login / Sign Up" />
           </ul>
         </div>
       </div>
