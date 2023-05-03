@@ -10,14 +10,12 @@ const CustomLink = ({ href, title }) => {
   if (href === location.pathname) console.log(href);
 
   return (
-    <li>
-      <Link
-        to={href}
-        className={href === location.pathname ? 'activeLink' : ''}
-      >
-        {title}
-      </Link>
-    </li>
+    <Link
+      to={href}
+      className={href === location.pathname ? 'activeLink' : 'link'}
+    >
+      {title}
+    </Link>
   );
 };
 
@@ -29,21 +27,18 @@ const Header = () => {
   }
 
   return (
-    <div className={cx('navigation', { active: menuActive })}>
-      <div className="container">
-        <div className="navbar">
-          <div className="logo-toggle-container">
-            <div className="logo">Online Museum</div>
-            <div className="burger" onClick={toggleClick}>
-              <span> </span>
-            </div>
-          </div>
-          <ul className="menu">
-            <CustomLink href="/" title="Home" />
-            <CustomLink href="/museums" title="Museums" />
-            <CustomLink href="/contacts" title="Contacts" />
-            <CustomLink href="/auth" title="Login / Sign Up" />
-          </ul>
+    <div className="navbar">
+      <div className="navbarWrapper">
+        <div className="leftWrapper">
+          <CustomLink href="/" title="Home" />
+          <CustomLink href="/museums" title="Museums" />
+          <CustomLink href="/contacts" title="Contacts" />
+        </div>
+        <div className="logo">Mosaics</div>
+        <div className="rightWrapper">
+          <CustomLink href="/login" title="Login" />
+          <div className='link'>|</div>
+          <CustomLink href="/registration" title="Sign Up" />
         </div>
       </div>
     </div>

@@ -1,12 +1,6 @@
-.App{
-  .pagesWrapper{
+.App {
+  .pagesWrapper {
+    padding-top: 3.3rem;
   }
 }
 
-@media screen and (max-width: 992px)  {
-  .App{
-  .pagesWrapper{
-    padding-top: 78px;
-  }
-}
-}
