@@ -5,7 +5,8 @@ import { Header } from './components';
 import { Main, Scene } from './Pages';
 import Museums from './Pages/Museums/Museums';
 
-import './App.scss'
+import './App.scss';
+import Footer from './components/Footer/Footer';
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
           <Route path="/scene" element={<Scene />} />
         </Routes>
       </div>
+      <Footer />
     </div>
   );
 };
