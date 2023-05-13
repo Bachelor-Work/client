@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@400;500&display=swap');
+
+.dropdown {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.dropdownSelectionCategory {
+  cursor: pointer;
+  width: 100% !important;
+  box-sizing: border-box;
+  border: 1px solid #dedee0;
+  border-radius: 5px;
+  color: #707070;
+  background-color: #f9fafb;
+  background-position: 10px 7px;
+  font-size: 14px;
+  background-repeat: no-repeat;
+  padding-left: 45px;
+  text-align: left;
+  background-image: url('../../common/icons/category.svg');
+  height: 40px;
+}
+
+.itemsHolder {
+  width: 99%;
+  position: absolute;
+  z-index: 1001;
+  background-color: #fff;
+  border: 1px solid #dedee0;
+  border-radius: 5px;
+  font-size: 14px;
+  font-family: 'Heebo', sans-serif;
+  top: 0 !important;
+  overflow: hidden;
+}
+
+.dropdownItem {
+  width: 100%;
+  padding: 7px 10px;
+  transition: opacity 250ms ease-in-out, transform 250ms ease-in-out;
+  cursor: pointer;
+  &:hover {
+    background-color: #f0f0f0;
+    border: 0px;
+  }
+  &:first-child {
+    padding-top: 10px;
+  }
+  &:last-child {
+    padding-bottom: 10px;
+  }
+}
+
+
+.closeButton {
+  position: absolute;
+  cursor: pointer;
+  right: 10px;
+}
+
+.arrow {
+  position: absolute;
+  pointer-events: none;
+  right: 15px;
+}

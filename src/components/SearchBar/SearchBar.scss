@@ -1,41 +1,17 @@
-textarea:focus,
-input:focus {
-  outline: none;
-}
-
 .searchBar {
-  width: 30%;
   display: flex;
-  position: relative;
-  .searchInput {
-    padding: 10px 20px;
-    padding-right: 47px;
-    width: 100%;
-    border: 1px solid #898989;
-    box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.1);
-    border-radius: 93px;
-    font-size: 16px;
-    font-weight: 300;
-    letter-spacing: 0.07em;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffff;
+  border-radius: 4px;
+  padding: 3px 20px;
+  width: 60%;
+  padding: 10px 20px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  .leftSide {
+    width: 63%;
   }
-  .searchButton{
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    top: 0;
-    right: 0;
-    height: 40px;
-    width: 40px;
-    background: #231F20;
-    border-radius: 50%;
-    &:hover{
-      cursor: pointer;
-    }
-    .searchSvg{
-      display: block;
-      height: 20px;
-      width: 20px;
-    }
+  .rightSide {
+    width: 33%;
   }
 }
