@@ -1,0 +1,24 @@
+textarea:focus,
+input:focus {
+  outline: none;
+}
+
+.searchInputContainer {
+  width: 100%;
+  display: flex;
+  position: relative;
+  .searchInput {
+    background-position: 10px 7px;
+    background-repeat: no-repeat;
+    padding: 10px 20px;
+    padding-right: 47px;
+    width: 100%;
+    border: 1px solid #dedee0;
+    background-color: #f9fafb;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 0.07em;
+    color: #707070;
+  }
+}

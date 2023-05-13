@@ -1,14 +1,18 @@
 import React from 'react';
+import SearchInput from '../Input/Input';
+import Dropdown from '../Dropdown/Dropdown';
 
-import './SearchBar.scss'
-import searchSVG from '../../common/icons/search.svg'
+import './SearchBar.scss';
 
 const SearchBar = () => {
+  const dropdown = ['Value 1','Value 2','Value 3','Value 4' ]
   return (
     <div className='searchBar'>
-      <input className='searchInput' type="text" placeholder='Search..'/>
-      <div className="searchButton">
-        <img src={searchSVG} alt='' className="searchSvg"/>
+      <div className="leftSide">
+        <SearchInput />
+      </div>
+      <div className="rightSide">
+        <Dropdown title={"Category"} items={dropdown} />
       </div>
     </div>
   );
