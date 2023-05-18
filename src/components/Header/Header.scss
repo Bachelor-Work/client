@@ -50,6 +50,7 @@
       }
 
       .link {
+        cursor: pointer;
         font-weight: 300;
         &::before {
           content: '';
@@ -79,7 +80,7 @@
         left: 0;
       }
 
-      .separator{
+      .separator {
         pointer-events: none;
         margin-left: 2rem;
       }
@@ -108,7 +109,6 @@
   }
 }
 
-
 .backdropStyles {
   background-color: rgba(0, 0, 0, 0.5);
   position: fixed;
@@ -121,7 +121,6 @@
     opacity: 1 !important;
   }
 }
-
 
 .dialogStyles {
   position: fixed;

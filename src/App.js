@@ -7,6 +7,7 @@ import Museums from './Pages/Museums/Museums';
 
 import './App.scss';
 import Footer from './components/Footer/Footer';
+import AdminPanel from './Pages/AdminPanel/AdminPanel';
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
           <Route path="/" element={<Main />} />
           <Route path="/museums" element={<Museums />} />
           <Route path="/scene" element={<Scene />} />
+          <Route path="/adminpanel" element={<AdminPanel />} />
         </Routes>
       </div>
       <Footer />
