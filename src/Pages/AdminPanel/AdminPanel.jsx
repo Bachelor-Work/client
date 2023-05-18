@@ -2,8 +2,8 @@ import React from 'react';
 
 import './AdminPanel.scss';
 
-import ManagerTable from './components/ManagerTable/ManagerTable';
-import MuseumsTable from './components/MuseumsTable/MuseumsTable';
+import ManagerTable from './components/Table/ManagerTable';
+import MuseumsTable from './components/Table/MuseumsTable';
 import fakeManagerData from './MOCK_MANAGER.json';
 import fakeMuseumsData from './MOCK_MUSEUM.json';
 

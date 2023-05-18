@@ -2,7 +2,7 @@ import React from 'react';
 import { useTable } from 'react-table';
 import Swal from 'sweetalert2';
 
-import './MuseumsTable.scss';
+import './Table.scss';
 
 import crossCircle from '../../../../common/icons/crossСircle.svg';
 
