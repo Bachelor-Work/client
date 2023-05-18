@@ -21,7 +21,7 @@ td {
 }
 th {
   text-align: left;
-  &:last-child{
+  &:last-child {
     text-align: center;
   }
 }
@@ -40,8 +40,13 @@ tbody td {
   padding: 0 0.5rem;
   .managerTablesButtons {
     display: block;
+    margin: 0 0.1rem;
     width: 2rem;
     height: auto;
     cursor: pointer;
+    transition: 120ms ease-in;
+    &:hover {
+      scale: 1.1;
+    }
   }
 }
