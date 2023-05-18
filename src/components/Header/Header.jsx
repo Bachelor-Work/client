@@ -1,8 +1,15 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import cx from 'classnames';
+import {
+  useDialogState,
+  Dialog,
+  DialogBackdrop,
+  DialogDisclosure,
+} from 'reakit/Dialog';
 
 import './Header.scss';
+import Register from '../Register/Register';
+import Login from '../Login/Login';
 
 const CustomLink = ({ href, title }) => {
   const location = useLocation();
@@ -20,11 +27,13 @@ const CustomLink = ({ href, title }) => {
 };
 
 const Header = () => {
-  const [menuActive, setMenuActive] = useState(false);
+  const dialog = useDialogState({ animated: true });
 
-  function toggleClick() {
-    setMenuActive((prevMenuActive) => !prevMenuActive);
-  }
+  const [clickListener, setClickListener] = useState();
+
+  const handleWindowChange = (value) => {
+    setClickListener(value);
+  };
 
   return (
     <div className="navbar">
@@ -36,9 +45,22 @@ const Header = () => {
         </div>
         <div className="logo">Mosaics</div>
         <div className="rightWrapper">
-          <CustomLink href="/login" title="Login" />
-          <div className='link'>|</div>
-          <CustomLink href="/registration" title="Sign Up" />
+          <DialogDisclosure className="link" onClick={() => setClickListener(true)}  {...dialog}>
+            Register
+          </DialogDisclosure>
+          <p className="separator">|</p>
+          <DialogDisclosure className="link" onClick={() => setClickListener(false)} {...dialog}>
+            Login
+          </DialogDisclosure>
+          <DialogBackdrop {...dialog} className="backdropStyles">
+            <Dialog aria-label="Welcome" {...dialog} className="dialogStyles">
+              {clickListener ? (
+                <Register changeWindow={handleWindowChange} dialog={dialog} />
+              ) : (
+                <Login changeWindow={handleWindowChange} dialog={dialog} />
+              )}
+            </Dialog>
+          </DialogBackdrop>{' '}
         </div>
       </div>
     </div>
