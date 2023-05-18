@@ -1,9 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 .inputBox {
   position: relative;
   width: 100%;
 }
 
 .formInput,
+.formTextareaError,
+.formTextarea,
 .formInputError {
   margin: 0;
   padding: 0 0 0 12px;
@@ -22,6 +27,7 @@
   }
 }
 
+.formTextareaError,
 .formInputError {
   border: 1px solid #d50000 !important;
   margin: 0;
@@ -31,13 +37,11 @@
   }
 }
 
-.formMessage {
-  margin-top:3px;
-  margin-bottom: 15px;
-  color: #d50000;
-  font-family: 'Roboto', sans-serif;
-  font-size: 12px;
-  width: 70%;
+.formTextareaError,
+.formTextarea {
+  padding-top: 0.6rem;
+  resize: none;
+  max-height: 7rem;
 }
 
 .formSpanEmpty,
@@ -69,4 +73,32 @@
 .formSpanEmptyError,
 .formSpanFilledError {
   color: #d50000;
+}
+
+.formMessage {
+  margin-top: 3px;
+  margin-bottom: 15px;
+  color: #d50000;
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+  width: 70%;
+}
+
+.sumbitButton {
+  width: 100%;
+  height: 36px;
+  background-color: #4fbca1;
+  border: none;
+  font-family: 'Heebo', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.4px;
+  color: #fff;
+  cursor: pointer;
+  transition: ease-in 0.1s;
+  margin-top: 1rem !important;
+
+  &:hover {
+    background-color: #39a389;
+  }
 }

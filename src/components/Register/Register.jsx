@@ -61,19 +61,6 @@ const Register = ({ changeWindow, dialog }) => {
           errors.email = 'Mandatory info missing';
         }
 
-        //Phone number
-        if (!values.phone) {
-          errors.phone = 'Mandatory info missing';
-        }
-
-        if (response === 'User with this phone is already existed') {
-          errors.phone = response;
-        }
-
-        if (values.phone && !/^\+?3?8?(0\d{9})$/g.test(values.phone)) {
-          errors.phone = 'Wrong phone number';
-        }
-
         if (response === 'User with this e-mail and phone is already existed') {
           errors.email = 'User with this e-mail is already existed';
           errors.phone = 'User with this phone is already existed';
@@ -84,14 +71,8 @@ const Register = ({ changeWindow, dialog }) => {
           errors.password = 'Mandatory info missing';
         }
 
-        if (
-          values.password &&
-          !/(?=[A-Za-z0-9@#$%^&+!=]+$)^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&+!=])(?=.{8,}).*$/g.test(
-            values.password
-          )
-        ) {
-          errors.password =
-            'The password has to be at least 1 uppercase, 1 special symbol and 1 number';
+        if (values.password && values.password.length < 8) {
+          errors.password = 'The password has to be at least 8';
         }
 
         setResponse('');
@@ -112,10 +93,6 @@ const Register = ({ changeWindow, dialog }) => {
   useEffect(() => {
     if (response === 'User with this e-mail is already existed') {
       form.update('email', form.values.email);
-    }
-
-    if (response === 'User with this phone is already existed') {
-      form.update('phone', form.values.phone);
     }
 
     if (response === 'User with this e-mail and phone is already existed"') {
@@ -153,17 +130,7 @@ const Register = ({ changeWindow, dialog }) => {
               error={form.errors.email}
               form={form}
             />
-
-            {/* PHONE */}
-            <CustomInput
-              name="phone"
-              placeholder="Phone number"
-              value={form.values.phone}
-              error={form.errors.phone}
-              form={form}
-              type="number"
-            />
-
+           
             {/* PASSWORD */}
             <div className={styles.inputBox}>
               <CustomInput
