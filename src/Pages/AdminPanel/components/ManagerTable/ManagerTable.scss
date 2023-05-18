@@ -37,10 +37,14 @@ tbody td {
 .accessWrapper {
   display: flex;
   padding: 0 0.5rem;
-  .managerTablesButtons {
+  .managerTablesButtons { 
     margin: 0 0.4rem;
     width: 2rem;
     height: auto;
     cursor: pointer;
+    transition: ease-in 100ms;
+    &:hover{
+      scale: 1.15;
+    }
   }
 }
