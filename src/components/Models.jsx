@@ -22,7 +22,7 @@ export function CustomModel(props) {
   // Use the useFrame hook to update the rotation of the mesh every frame
   useFrame(() => {
     if (rotate) {
-      meshRef.current.rotation.x += 0.01;
+      meshRef.current.rotation.y += 0.01;
     }
   }, [rotate]);
 
@@ -33,7 +33,7 @@ export function CustomModel(props) {
         setRotate((prevState) => !prevState);
       }}
     >
-      <primitive object={meshRef.current} scale={10} />
+      <primitive object={meshRef.current}  />
     </mesh>
   );
 }

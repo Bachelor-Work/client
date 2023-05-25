@@ -1,17 +1,16 @@
 import { Canvas } from '@react-three/fiber';
 
 import { CustomModel } from '../../components';
+import { MODELS_PATH } from '../../constants';
 import Experience from './components/Experience';
 
 import './Scene.scss';
-
-const MODEL_PATH = 'http://localhost:3000/f22.obj';
 
 const Scene = () => (
   <div className="scene">
     <Canvas shadows>
       <Experience />
-      <CustomModel modelPath={MODEL_PATH} />
+      <CustomModel modelPath={`${MODELS_PATH}/dragon.obj`} />
     </Canvas>
   </div>
 );

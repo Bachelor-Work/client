@@ -14,6 +14,14 @@ const grid = [
   [1, _, _, _, 1, 1, _, _, _, 1],
   [1, _, _, _, 1, 1, _, _, _, 1],
   [1, _, _, _, _, _, _, _, _, 1],
+  [1, _, _, _, _, _, _, _, _, 1],
+  [1, _, _, _, _, _, _, _, _, 1],
+  [1, _, _, _, _, _, _, _, _, 1],
+  [1, _, _, _, 1, 1, _, _, _, 1],
+  [1, _, _, _, 1, 1, _, _, _, 1],
+  [1, _, _, _, 1, 1, _, _, _, 1],
+  [1, _, _, _, 1, 1, _, _, _, 1],
+  [1, _, _, _, _, _, _, _, _, 1],
   [1, _, 1, _, _, _, _, 1, _, 1],
   [1, _, _, _, _, _, _, _, _, 1],
   [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -24,7 +32,7 @@ const TILE_SIZE = 32;
 const boxGeometry = new THREE.BoxGeometry(1, 1, 1);
 const planeGeometry = new THREE.PlaneGeometry(1, 1);
 
-const wallMaterial = new THREE.MeshStandardMaterial({ color: 'white', wireframe: true });
+const wallMaterial = new THREE.MeshStandardMaterial({ color: 'white' });
 const floorMaterial = new THREE.MeshPhongMaterial({ side: THREE.DoubleSide });
 
 const Wall = ({ position = [0, 0, 0], rotation = [0, 0, 0] }) => (
@@ -43,7 +51,7 @@ const Walls = () => {
   const heightSegments = grid.length
 
   return (
-    <group position={[-TILE_SIZE * 4.5, -TILE_SIZE * 5.5, 0]}>
+    <group position={[-TILE_SIZE * 4.5, -TILE_SIZE * 9.5, 0]}>
       {
         grid.map((row, rowIndex) =>
           row.map((col, colIndex) => {
