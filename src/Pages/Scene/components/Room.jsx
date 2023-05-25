@@ -1,4 +1,7 @@
+import { useLoader } from '@react-three/fiber';
 import * as THREE from 'three';
+
+import { TEXTURES_PATH } from '../../../constants';
 
 const _ = false;
 const grid = [
@@ -21,8 +24,8 @@ const TILE_SIZE = 32;
 const boxGeometry = new THREE.BoxGeometry(1, 1, 1);
 const planeGeometry = new THREE.PlaneGeometry(1, 1);
 
-const wallMaterial = new THREE.MeshBasicMaterial({ wireframe: true, color: 'black' });
-const floorMaterial = new THREE.MeshBasicMaterial({ color: 'green', side: THREE.DoubleSide });
+const wallMaterial = new THREE.MeshStandardMaterial({ color: 'white', wireframe: true });
+const floorMaterial = new THREE.MeshPhongMaterial({ side: THREE.DoubleSide });
 
 const Wall = ({ position = [0, 0, 0], rotation = [0, 0, 0] }) => (
   <mesh
@@ -58,6 +61,12 @@ const Walls = () => {
 };
 
 const FloorPlane = () => {
+  const texture = useLoader(THREE.TextureLoader, `${TEXTURES_PATH}/laminate_floor.jpg`);
+  texture.wrapS = THREE.RepeatWrapping;
+  texture.wrapT = THREE.RepeatWrapping;
+  texture.repeat.set(Math.floor(1000 / TILE_SIZE), Math.floor(1000 / TILE_SIZE));
+  floorMaterial.map = texture;
+
   const scaleX = TILE_SIZE * grid[0].length;
   const scaleY = TILE_SIZE * grid.length;
 
