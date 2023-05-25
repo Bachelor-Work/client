@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
 
 import MuseumDetailsCart from '../../components/MuseumDetailsCart/MuseumDetailsCart';
 

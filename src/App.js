@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
+import { checkIsAuth } from './redux/slices/userSlice';
 import { Header } from './components';
 import Footer from './components/Footer/Footer';
 import {
@@ -11,8 +13,7 @@ import {
   MuseumDetails,
   Museums,
   Scene,
-} from './Pages';
-import { checkIsAuth } from './redux/slices/userSlice';
+} from './pages';
 
 import './App.scss';
 

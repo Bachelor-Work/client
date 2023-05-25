@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import { useFrame, useLoader } from '@react-three/fiber';
+import { MeshStandardMaterial, Object3D } from 'three';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
 
 export function CustomModel(props) {
@@ -8,6 +9,12 @@ export function CustomModel(props) {
 
   // Load the OBJ model using the useLoader hook
   const obj = useLoader(OBJLoader, props.modelPath);
+
+  obj.traverse((child) => {
+    if (child instanceof Object3D) {
+      child.material = new MeshStandardMaterial({ color: 'red' })
+    }
+  })
 
   // Set the mesh to the loaded object
   meshRef.current = obj;
@@ -26,7 +33,7 @@ export function CustomModel(props) {
         setRotate((prevState) => !prevState);
       }}
     >
-      <primitive object={meshRef.current} />
+      <primitive object={meshRef.current} scale={10} />
     </mesh>
   );
 }

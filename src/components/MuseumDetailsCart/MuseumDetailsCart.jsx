@@ -1,12 +1,12 @@
 import React from 'react';
-import { convertToImage } from '../../bytesToPNG';
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import './MuseumDetailsCart.scss';
-
+import { convertToImage } from '../../bytesToPNG';
 import instagramIcon from '../../common/icons/instagram.svg';
 import twitterIcon from '../../common/icons/twitter.svg';
-import { Link } from 'react-router-dom';
+
+import './MuseumDetailsCart.scss';
 
 const MuseumDetailsCart = ({ name, image, desc, instagramURL, twitterURL }) => {
   const isLoaded = useSelector(({ museums }) => museums.oneMuseumLoaded);
