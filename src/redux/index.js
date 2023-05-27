@@ -1,8 +1,8 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import museumReducer from './museumReducer';
+import museumSlice from './museumSlice';
 
 const rootReducer = combineReducers({
-  museum: museumReducer
+  museums: museumSlice
 });
 
 export const store = configureStore({

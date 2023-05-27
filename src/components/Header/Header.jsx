@@ -14,8 +14,6 @@ import Login from '../Login/Login';
 const CustomLink = ({ href, title }) => {
   const location = useLocation();
 
-  if (href === location.pathname) console.log(href);
-
   return (
     <Link
       to={href}
