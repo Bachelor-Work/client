@@ -29,7 +29,7 @@ const MuseumDetails = () => {
         instagramURL={item.instagramURL}
         twitterURL={item.twitterURL}
       />
-      <Scene />
+      {!isDetailsOpen && <Scene />}
     </>
   );
 };
