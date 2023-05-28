@@ -10,6 +10,10 @@ import closeDialog from '../../common/icons/closeDialog.svg';
 
 import styles from './Login.module.scss';
 import CustomInput from '../CustomInput/CustomInput';
+import { useDispatch } from 'react-redux';
+import { loginSuccess } from '../../redux/slices/userSlice';
+
+import { postInstance } from '../../redux/axiosInstance';
 
 const Login = ({ changeWindow, dialog }) => {
   const handleWindowChange = () => {
@@ -18,58 +22,52 @@ const Login = ({ changeWindow, dialog }) => {
 
   const [passVisibility, setPassVisibility] = useState('password');
   const [buttonListener, setButtonListener] = useState(false);
-  const [response, setResponse] = useState('');
+  const [response, setResponse] = useState(false);
 
-  const loginHandler = async ({ email, password }) => {
-    // setButtonListener(true);
-    // try {
-    //   const data = await login(email, password);
-    //   user.setIsAuth(true);
-    //   dialog2.hide();
-    // } catch (e) {
-    //   setResponse(e.response.data.message);
-    // }
-  };
+  const dispatch = useDispatch();
 
   const form = useFormState({
-    values: { email: '', password: '' },
-    onValidate: (values) => {
-      const errors = {};
-      if (buttonListener) {
-        //Email
-        if (!values.email) {
-          errors.email = 'Mandatory info missing';
-        }
-
-        //Pasword
-        if (!values.password) {
-          errors.password = 'Mandatory info missing';
-        }
-
-        if (response === 'The email or password is incorrect') {
-          errors.email = '*';
-          errors.password = '*';
-        }
-
-        if (Object.keys(errors).length) {
-          throw errors;
-        }
-      }
-
-      setButtonListener(false);
+    values: {
+      email: '',
+      password: '',
     },
-
-    onSubmit: (values) => {
-      loginHandler(values);
+    onValidate: (values) => {
+      let errors = {};
+      if (!values.email && buttonListener) {
+        errors = {
+          ...errors,
+          email: 'Mandatory info missing',
+        };
+      }
+      if (!values.password && buttonListener) {
+        errors = {
+          ...errors,
+          password: 'Mandatory info missing',
+        };
+      }
+      if (Object.keys(errors).length) {
+        throw errors;
+      }
+    },
+    onSubmit: ({ email, password }) => {
+      postInstance
+        .post('auth/login', {
+          email,
+          password,
+        })
+        .then((response) => {
+          // Handle the response
+          dispatch(loginSuccess(response.data));
+          dialog.hide();
+        })
+        .catch((error) => {
+          if (error) {
+            form.reset();
+            setResponse(true);
+          }
+        });
     },
   });
-
-  useEffect(() => {
-    if (response === 'The email or password is incorrect') {
-      form.update('email', form.values.email);
-      form.update('password', '');
-    }
-  }, [response]);
 
   return (
     <>
@@ -123,7 +121,7 @@ const Login = ({ changeWindow, dialog }) => {
               <FormSubmitButton
                 className={styles.sumbitButton}
                 onClick={() => {
-                  setResponse('');
+                  setResponse(false);
                   setButtonListener(true);
                 }}
                 {...form}

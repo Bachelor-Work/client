@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import MuseumDetailsCart from '../../components/MuseumDetailsCart/MuseumDetailsCart';
 
-import { fetchOneMuseum } from '../../redux/museumSlice';
+import { fetchOneMuseum } from '../../redux/slices/museumSlice';
 
 const MuseumDetails = () => {
   const { id } = useParams();
@@ -15,6 +15,7 @@ const MuseumDetails = () => {
 
   useEffect(() => {
     dispatch(fetchOneMuseum(id));
+    
   }, [id]);
 
   return (

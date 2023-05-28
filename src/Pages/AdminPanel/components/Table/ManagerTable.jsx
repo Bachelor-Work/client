@@ -4,23 +4,36 @@ import Swal from 'sweetalert2';
 
 import './Table.scss';
 
+import { giveAccess } from '../../../../redux/slices/adminSlice';
+
 import crossCircle from '../../../../common/icons/crossСircle.svg';
 import tickСircle from '../../../../common/icons/tickСircle.svg';
+import { useDispatch } from 'react-redux';
 
 const ManagerTable = ({ data }) => {
+  const dispatch = useDispatch();
   const columns = React.useMemo(
     () => [
       {
         Header: 'ID',
-        accessor: 'id',
+        accessor: 'user_id',
       },
       {
         Header: 'Email',
-        accessor: 'user_email',
+        accessor: 'userEmail',
       },
       {
         Header: 'User description',
-        accessor: 'user_desc',
+        accessor: 'userDesc',
+      },
+      {
+        Header: 'Request status',
+        accessor: 'status',
+        Cell: ({ value }) => (
+          <div className="status">
+            {value ? <span>Approved</span> : <span>Pending</span>}
+          </div>
+        ),
       },
       {
         Header: 'Access',
@@ -28,13 +41,13 @@ const ManagerTable = ({ data }) => {
           <div className="accessWrapper">
             <img
               className="managerTablesButtons"
-              onClick={() => handleAdd(row.original.id)}
+              onClick={() => handleAdd(row.original.user_id)}
               src={tickСircle}
               alt="tickСircle"
             />
             <img
               className="managerTablesButtons"
-              onClick={() => handleCancel(row.original.id)}
+              onClick={() => handleCancel(row.original.user_id)}
               src={crossCircle}
               alt="crossCircle"
             />
@@ -56,10 +69,10 @@ const ManagerTable = ({ data }) => {
       confirmButtonText: 'Yes, confirm it!',
     }).then((result) => {
       if (result.isConfirmed) {
+        dispatch(giveAccess(id));
         Swal.fire('Confirmed!', 'The request has been confirmed.', 'success');
       }
     });
-
   };
 
   const handleCancel = (id) => {

@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   unstable_useFormState as useFormState,
   unstable_Form as Form,
   unstable_FormSubmitButton as FormSubmitButton,
 } from 'reakit/Form';
+
+import { postInstance } from '../../redux/axiosInstance';
 
 import visiblePassword from '../../common/icons/eye.svg';
 import closeDialog from '../../common/icons/closeDialog.svg';
@@ -18,88 +20,83 @@ const Register = ({ changeWindow, dialog }) => {
 
   const [passVisibility, setPassVisibility] = useState('password');
   const [buttonListener, setButtonListener] = useState(false);
+
   const [response, setResponse] = useState('');
 
-  const registerHandler = async ({ fullname, email, phone, password }) => {
-    // try {
-    //   const data = await registration(fullname, email, phone, password);
-    //   setButtonListener(true);
-    //   user.setIsAuth(true);
-    //   dialog1.hide();
-    // } catch (e) {
-    //   setResponse(e.response.data.message);
-    // }
-  };
-
   const form = useFormState({
-    values: { fullname: '', email: '', phone: '', password: '' },
-    onValidate: (values) => {
-      const errors = {};
-      if (buttonListener) {
-        // Full name
-        if (!values.fullname) {
-          errors.fullname = 'Mandatory info missing';
-        }
-
-        if (
-          values.fullname &&
-          !/([а-яА-яa-zA-z]+\s)+([а-яА-яa-zA-z]+)/gi.test(values.fullname)
-        ) {
-          errors.fullname = 'Example: Tony Stark';
-        }
-
-        //Email
-
-        if (response === 'User with this e-mail is already existed') {
-          errors.email = response;
-        }
-
-        if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(values.email)) {
-          errors.email = 'Email should have correct format';
-        }
-        if (!values.email) {
-          errors.email = 'Mandatory info missing';
-        }
-
-        if (response === 'User with this e-mail and phone is already existed') {
-          errors.email = 'User with this e-mail is already existed';
-          errors.phone = 'User with this phone is already existed';
-        }
-
-        //Pasword
-        if (!values.password) {
-          errors.password = 'Mandatory info missing';
-        }
-
-        if (values.password && values.password.length < 8) {
-          errors.password = 'The password has to be at least 8';
-        }
-
-        setResponse('');
-
-        if (Object.keys(errors).length) {
-          throw errors;
-        }
-      }
-
-      setButtonListener(false);
+    values: {
+      fullname: '',
+      email: '',
+      password: '',
     },
-
-    onSubmit: (values) => {
-      registerHandler(values);
+    onValidate: (values) => {
+      let errors = {};
+      if (!values.fullname && buttonListener) {
+        errors = {
+          ...errors,
+          username: 'Mandatory info missing',
+        };
+      }
+      if (!values.email && buttonListener && !response) {
+        errors = {
+          ...errors,
+          email: 'Mandatory info missing',
+        };
+      }
+      if (response) {
+        errors = {
+          ...errors,
+          email: 'The email address is already in use!',
+        };
+      }
+      if (
+        !/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(values.email) &&
+        buttonListener &&
+        !response
+      ) {
+        errors = {
+          ...errors,
+          email: 'Email should have correct format',
+        };
+      }
+      if (!values.password && buttonListener) {
+        errors = {
+          ...errors,
+          password: 'Mandatory info missing',
+        };
+      }
+      if (Object.keys(errors).length) {
+        setResponse('');
+        throw errors;
+      }
+    },
+    onSubmit: ({ username, email, password }) => {
+      postInstance
+        .post('auth/register', {
+          username,
+          email,
+          password,
+        })
+        .then((response) => {
+          dialog.hide();
+        })
+        .catch((error) => {
+          form.update('email', '');
+          setResponse(error.response.data);
+        });
     },
   });
 
-  useEffect(() => {
-    if (response === 'User with this e-mail is already existed') {
-      form.update('email', form.values.email);
-    }
+  // if (
+  //   values.fullname &&
+  //   !/([а-яА-яa-zA-z]+\s)+([а-яА-яa-zA-z]+)/gi.test(values.fullname)
+  // ) {
+  //   errors.fullname = 'Example: Tony Stark';
+  // }
 
-    if (response === 'User with this e-mail and phone is already existed"') {
-      form.update('email', form.values.email);
-      form.update('phone', form.values.phone);
-    }
-  }, [response]);
+  // if (values.password && values.password.length < 8) {
+  //   errors.password = 'The password has to be at least 8';
+  // }
 
   return (
     <div>
@@ -130,7 +127,7 @@ const Register = ({ changeWindow, dialog }) => {
               error={form.errors.email}
               form={form}
             />
-           
+
             {/* PASSWORD */}
             <div className={styles.inputBox}>
               <CustomInput
@@ -153,8 +150,7 @@ const Register = ({ changeWindow, dialog }) => {
                 <></>
               ) : (
                 <span className={styles.passwordHint}>
-                  The password has to be at least 1 uppercase, 1 special symbol
-                  and 1 number
+                  The password has to be at least 8 symbols
                 </span>
               )}
             </div>

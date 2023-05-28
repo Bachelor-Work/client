@@ -6,8 +6,9 @@
   position: fixed;
   height: 3.5rem;
   width: 100vw;
-  background-color: #ffffff7b;
-  backdrop-filter: blur(40px);
+  // background-color: #ffffff7b;
+  // backdrop-filter: blur(40px);
+  background-color: #fff;
   z-index: 990;
   display: flex;
   align-items: center;
@@ -104,6 +105,33 @@
       }
       .link:first-child {
         margin-left: 0;
+      }
+      .userBar {
+        justify-content: right;
+        display: flex;
+        align-items: center;
+        .menuButton {
+          margin-left: 30px;
+          background-color: none;
+          border: none;
+          border-radius: 50%;
+          padding: 0;
+          img {
+            height: 2.2rem;
+            width: 2.2rem;
+            border-radius: 50%;
+            display: block;
+            cursor: pointer;
+            box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+          }
+        }
+      }
+      .welcomeName {
+        font-family: 'Heebo', sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+        color: #000;
+        margin-left: 30px;
       }
     }
   }

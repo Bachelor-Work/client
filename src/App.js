@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import { Header } from './components';
@@ -10,8 +10,20 @@ import Footer from './components/Footer/Footer';
 import AdminPanel from './Pages/AdminPanel/AdminPanel';
 import Contacts from './Pages/Contacts/Contacts';
 import MuseumDetails from './Pages/MuseumDetails/MuseumDetails';
+import { useDispatch, useSelector } from 'react-redux';
+import { checkIsAuth } from './redux/slices/userSlice';
 
 const App = () => {
+  const dispatch = useDispatch();
+
+  const userRole = useSelector(({ user }) => user.user.role);
+
+  useEffect(() => {
+    if (localStorage.getItem('jwtToken')) {
+      dispatch(checkIsAuth());
+    }
+  }, []);
+
   return (
     <div className="App">
       <Header />
@@ -22,7 +34,7 @@ const App = () => {
           <Route path="/contacts" element={<Contacts />} />
           <Route path="/scene" element={<Scene />} />
           <Route path="/museums/:id" element={<MuseumDetails />} />
-          <Route path="/adminpanel" element={<AdminPanel />} />
+          <Route path="/adminpanel" element= {userRole==='ADMIN' ? <AdminPanel /> : <></>} />
         </Routes>
       </div>
       <Footer />

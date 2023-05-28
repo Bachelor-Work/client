@@ -4,8 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import './Museums.scss';
 
 import { SearchBar } from '../../components';
-import { fetchAllMuseums } from '../../redux/museumSlice';
 import MuseumItem from '../../components/MuseumItem/MuseumItem';
+import { fetchAllMuseums } from '../../redux/slices/museumSlice';
 
 const Museums = () => {
   const dispatch = useDispatch();
