@@ -1,7 +1,8 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
+
+import adminSlice from './slices/adminSlice';
 import museumSlice from './slices/museumSlice';
 import userSlice from './slices/userSlice';
-import adminSlice from './slices/adminSlice';
 
 const rootReducer = combineReducers({
   museums: museumSlice,

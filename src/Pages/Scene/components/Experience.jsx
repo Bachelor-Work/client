@@ -1,15 +1,20 @@
 import { Suspense } from 'react';
-import { OrbitControls, Sky, Stats } from '@react-three/drei';
+import { PointerLockControls, Sky, Stats } from '@react-three/drei';
+import { Physics } from '@react-three/rapier';
 
 import Lights from './Lights';
+import Player from './Player';
 import Room from './Room';
 
 const Experience = () => (
   <Suspense loader={null}>
     <Lights />
     <Sky />
-    <Room />
-    <OrbitControls />
+    <Physics>
+      <Room />
+      <Player />
+    </Physics>
+    <PointerLockControls />
     <Stats />
   </Suspense>
 );

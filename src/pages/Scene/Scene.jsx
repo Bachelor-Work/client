@@ -1,6 +1,7 @@
 import { Canvas } from '@react-three/fiber';
 
 import { CustomModel } from '../../components';
+import Crosshair from '../../components/Crosshair';
 import { MODELS_PATH } from '../../constants';
 import Experience from './components/Experience';
 
@@ -12,6 +13,7 @@ const Scene = () => (
       <Experience />
       <CustomModel modelPath={`${MODELS_PATH}/dragon.obj`} />
     </Canvas>
+    <Crosshair />
   </div>
 );
 
