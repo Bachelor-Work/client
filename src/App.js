@@ -10,7 +10,6 @@ import {
   Main,
   MuseumDetails,
   Museums,
-  Scene,
 } from './pages';
 import { checkIsAuth } from './redux/slices/userSlice';
 
@@ -35,7 +34,6 @@ const App = () => {
           <Route path="/" element={<Main />} />
           <Route path="/museums" element={<Museums />} />
           <Route path="/contacts" element={<Contacts />} />
-          <Route path="/scene" element={<Scene />} />
           <Route path="/museums/:id" element={<MuseumDetails />} />
           <Route
             path="/adminpanel"

@@ -1,8 +1,8 @@
 import { Canvas } from '@react-three/fiber';
 
-import { CustomModel } from '../../components';
-import Crosshair from '../../components/Crosshair';
 import { MODELS_PATH } from '../../constants';
+import Crosshair from './components/Crosshair';
+import CustomModel from './components/CustomModel';
 import Experience from './components/Experience';
 
 import './Scene.scss';

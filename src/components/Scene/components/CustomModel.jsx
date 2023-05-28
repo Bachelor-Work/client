@@ -3,7 +3,7 @@ import { useFrame, useLoader } from '@react-three/fiber';
 import { MeshStandardMaterial, Object3D } from 'three';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
 
-export function CustomModel(props) {
+export default function CustomModel(props) {
   const meshRef = useRef();
   const [rotate, setRotate] = useState();
 
