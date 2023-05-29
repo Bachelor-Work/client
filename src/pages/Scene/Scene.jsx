@@ -7,7 +7,7 @@ import './Scene.scss';
 
 const MODEL_PATH = 'http://localhost:3000/f22.obj';
 
-export const Scene = () => (
+const Scene = () => (
   <div className="scene">
     <Canvas>
       <ambientLight intensity={0.5} />
@@ -18,3 +18,5 @@ export const Scene = () => (
     </Canvas>
   </div>
 );
+
+export default Scene;
