@@ -3,7 +3,7 @@ import { PointerLockControls, Sky, Stats } from '@react-three/drei';
 import { Physics } from '@react-three/rapier';
 
 import { MODELS_PATH } from '../../../constants';
-import CustomModel from './CustomModel';
+import { Model as DragonModel } from './Dragon';
 import Lights from './Lights';
 import Player from './Player';
 import Progress from './Progress';
@@ -22,7 +22,7 @@ const Experience = () => (
     <Physics>
       <Room />
       <Player />
-      {models.map((m, i) => <CustomModel key={i} {...m} />)}
+      {models.map((m, i) => <DragonModel key={i} {...m} />)}
     </Physics>
     <PointerLockControls />
     <Stats />
