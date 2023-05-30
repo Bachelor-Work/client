@@ -1,27 +1,28 @@
 import React from 'react';
-import { convertToImage } from '../../bytesToPNG';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+
+import { convertToImage } from '../../bytesToPNG';
+import instagramIcon from '../../common/icons/instagram.svg';
+import twitterIcon from '../../common/icons/twitter.svg';
 
 import './MuseumDetailsCart.scss';
 
-import instagramIcon from '../../common/icons/instagram.svg';
-import twitterIcon from '../../common/icons/twitter.svg';
-import { Link } from 'react-router-dom';
-
-const MuseumDetailsCart = ({ name, image, desc, instagramURL, twitterURL }) => {
+const MuseumDetailsCart = ({ name, image, desc, instagramURL, twitterURL, isOpen, setOpen }) => {
   const isLoaded = useSelector(({ museums }) => museums.oneMuseumLoaded);
+
+  if (!isOpen) return null;
 
   return (
     <>
-      <div className="backdrop" />
-
+      <div onClick={() => setOpen(false)} className="backdrop" />
       <div className="museumDetailsCartWrapper">
         {isLoaded && (
           <>
             <img
               className="museumImage"
               src={convertToImage(image)}
-              alt="Museum image"
+              alt="Museum"
             />
             <div className="museumDetailsCartInfo">
               <div className="museumText">
@@ -33,7 +34,7 @@ const MuseumDetailsCart = ({ name, image, desc, instagramURL, twitterURL }) => {
 
               <div className="museumLinks">
                 {instagramURL && (
-                  <a href={instagramURL} target="_blank">
+                  <a href={instagramURL} target="_blank" rel="noreferrer">
                     <img
                       className="museumLink"
                       src={instagramIcon}
@@ -42,7 +43,7 @@ const MuseumDetailsCart = ({ name, image, desc, instagramURL, twitterURL }) => {
                   </a>
                 )}
                 {twitterURL && (
-                  <a href={twitterURL} target="_blank">
+                  <a href={twitterURL} target="_blank" rel="noreferrer">
                     <img
                       className="museumLink"
                       src={twitterIcon}
