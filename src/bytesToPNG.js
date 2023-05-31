@@ -1,5 +1,5 @@
 export const convertToImage = (string) => {
-  if (typeof string !== 'undefined' && typeof string === 'string') {
+  if (typeof string !== 'undefined') {
     const byteString = atob(string);
     const arrayBuffer = new ArrayBuffer(byteString.length);
     const uint8Array = new Uint8Array(arrayBuffer);

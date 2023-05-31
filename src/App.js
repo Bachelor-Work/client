@@ -2,17 +2,17 @@ import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import { Header } from './components';
-import { Main, Scene } from './Pages';
-import Museums from './Pages/Museums/Museums';
+import { Main, Scene } from './pages';
+import Museums from './pages/Museums/Museums';
 
 import './App.scss';
 import Footer from './components/Footer/Footer';
-import AdminPanel from './Pages/AdminPanel/AdminPanel';
-import Contacts from './Pages/Contacts/Contacts';
-import MuseumDetails from './Pages/MuseumDetails/MuseumDetails';
+import AdminPanel from './pages/AdminPanel/AdminPanel';
+import Contacts from './pages/Contacts/Contacts';
+import MuseumDetails from './pages/MuseumDetails/MuseumDetails';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkIsAuth } from './redux/slices/userSlice';
-import ManagerPanel from './Pages/ManagerPanel/ManagerPanel';
+import ManagerPanel from './pages/ManagerPanel/ManagerPanel';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -37,11 +37,11 @@ const App = () => {
           <Route path="/museums/:id" element={<MuseumDetails />} />
           <Route
             path="/adminpanel"
-            element={userRole === 'ADMIN' ? <AdminPanel /> : <></>}
+            element={userRole === 'ADMIN' ? <AdminPanel /> : null}
           />
           <Route
             path="/museumpanel"
-            element={userRole === 'MANAGER' ? <ManagerPanel /> : <></>}
+            element={userRole === 'MANAGER' ? <ManagerPanel /> : null}
           />
         </Routes>
       </div>
