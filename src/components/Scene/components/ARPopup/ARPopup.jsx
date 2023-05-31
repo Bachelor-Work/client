@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 
 import { useARPopup } from '../../context';
+import ARScene from '../ARScene';
 
 import './ARPopup.scss';
 
@@ -23,7 +24,11 @@ const ARPopup = () => {
 
   if (!isARPopupOpen) return null;
 
-  return <div className="popup" onClick={closeARPopup}>Hello from ARPopup</div>
+  return (
+    <div className="popup">
+      <ARScene />
+    </div>
+  )
 }
 
 export default ARPopup;
