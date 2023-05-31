@@ -1,18 +1,23 @@
 import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 
 import { Header } from './components';
-import { Main, Scene } from './pages';
-import Museums from './pages/Museums/Museums';
+import Footer from './components/Footer/Footer';
 
 import './App.scss';
-import Footer from './components/Footer/Footer';
-import AdminPanel from './pages/AdminPanel/AdminPanel';
-import Contacts from './pages/Contacts/Contacts';
-import MuseumDetails from './pages/MuseumDetails/MuseumDetails';
-import { useDispatch, useSelector } from 'react-redux';
+import {
+  Contacts,
+  Main,
+  MuseumDetails,
+  Museums,
+  ManagerPanel,
+  AdminPanel,
+} from './pages';
+
 import { checkIsAuth } from './redux/slices/userSlice';
-import { ManagerPanel } from './pages';
+
+import './App.scss';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -33,7 +38,6 @@ const App = () => {
           <Route path="/" element={<Main />} />
           <Route path="/museums" element={<Museums />} />
           <Route path="/contacts" element={<Contacts />} />
-          <Route path="/scene" element={<Scene />} />
           <Route path="/museums/:id" element={<MuseumDetails />} />
           <Route
             path="/adminpanel"

@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-
-import './Museums.scss';
+import { useDispatch,useSelector } from 'react-redux';
 
 import { SearchBar } from '../../components';
 import MuseumItem from '../../components/MuseumItem/MuseumItem';
 import { fetchAllMuseums } from '../../redux/slices/museumSlice';
+
+import './Museums.scss';
 
 const Museums = () => {
   const dispatch = useDispatch();

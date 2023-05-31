@@ -1,14 +1,13 @@
 import React from 'react';
 import { useTable } from 'react-table';
+import { useDispatch, useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
 
-import './Table.scss';
-
 import { giveAccess } from '../../../../redux/slices/adminSlice';
+import crossCircle from '../../../../common/icons/crossCircle.svg';
+import tickCircle from '../../../../common/icons/tickCircle.svg';
 
-import crossCircle from '../../../../common/icons/crossСircle.svg';
-import tickСircle from '../../../../common/icons/tickСircle.svg';
-import { useDispatch, useSelector } from 'react-redux';
+import './Table.scss';
 
 const ManagerTable = ({ data }) => {
   const token = useSelector(({ user }) => user.token);
@@ -42,9 +41,9 @@ const ManagerTable = ({ data }) => {
           <div className="accessWrapper">
             <img
               className="managerTablesButtons"
-              onClick={() => handleAdd(row.original.user_id)}
-              src={tickСircle}
-              alt="tickСircle"
+              onClick={() => handleAdd(row.original.id)}
+              src={tickCircle}
+              alt="tickCircle"
             />
             <img
               className="managerTablesButtons"

@@ -2,9 +2,9 @@ import React from 'react';
 import { useTable } from 'react-table';
 import Swal from 'sweetalert2';
 
-import './Table.scss';
+import crossCircle from '../../../../common/icons/crossCircle.svg';
 
-import crossCircle from '../../../../common/icons/crossСircle.svg';
+import './Table.scss';
 
 const MuseumsTable = ({ data }) => {
   const columns = React.useMemo(
