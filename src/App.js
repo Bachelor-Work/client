@@ -13,7 +13,7 @@ import {
   Museums,
   ManagerPanel,
   AdminPanel,
-} from './pages';
+} from './Pages';
 
 import { checkIsAuth } from './redux/slices/userSlice';
 
