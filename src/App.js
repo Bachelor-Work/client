@@ -12,7 +12,7 @@ import Contacts from './pages/Contacts/Contacts';
 import MuseumDetails from './pages/MuseumDetails/MuseumDetails';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkIsAuth } from './redux/slices/userSlice';
-import ManagerPanel from './pages/ManagerPanel/ManagerPanel';
+import { ManagerPanel } from './pages';
 
 const App = () => {
   const dispatch = useDispatch();
