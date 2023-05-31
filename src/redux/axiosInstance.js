@@ -1,14 +1,15 @@
 import axios from 'axios';
-import { useSelector } from 'react-redux';
+
+const baseURL = 'http://localhost:8080';
 
 // Create a new instance of Axios
 export const getInstance = axios.create({
-  baseURL: 'http://localhost:8080',
+  baseURL,
   timeout: 5000,
 });
 
 export const postInstance = axios.create({
-  baseURL: 'http://localhost:8080',
+  baseURL,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -17,7 +18,7 @@ export const postInstance = axios.create({
 // Create a new instance of Axios
 export const useTokenInstance = (token) => {
   const instance = axios.create({
-    baseURL: 'http://localhost:8080',
+    baseURL,
     headers: {
       Authorization: token ? `Bearer ${token}` : '*',
     },
@@ -29,5 +30,5 @@ export const useTokenInstance = (token) => {
 export default {
   getInstance,
   postInstance,
-  useTokenInstance
+  useTokenInstance,
 };
