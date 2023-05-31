@@ -2,7 +2,7 @@ import { useLoader } from '@react-three/fiber';
 import { RigidBody } from '@react-three/rapier';
 import * as THREE from 'three';
 
-import { TEXTURES_PATH } from '../../../constants';
+import { TEXTURES_PATH } from '../constants';
 
 const _ = false;
 const grid = [
