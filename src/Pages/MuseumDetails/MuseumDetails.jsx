@@ -18,6 +18,8 @@ const MuseumDetails = () => {
     dispatch(fetchOneMuseum(id));
   }, [id]);
 
+
+
   return (
     <>
       <MuseumDetailsCart
@@ -25,7 +27,7 @@ const MuseumDetails = () => {
         setOpen={setDetailsOpen}
         name={item.museumName}
         desc={item.museumDescription}
-        image={item.fileContent}
+        image={item.imgContent}
         instagramURL={item.instagramURL}
         twitterURL={item.twitterURL}
       />

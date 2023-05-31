@@ -5,15 +5,15 @@ import {
   unstable_FormSubmitButton as FormSubmitButton,
 } from 'reakit/Form';
 
-import visiblePassword from '../../common/icons/eye.svg';
-import closeDialog from '../../common/icons/closeDialog.svg';
+import visiblePassword from '../../../common/icons/eye.svg';
+import closeDialog from '../../../common/icons/closeDialog.svg';
 
 import styles from './Login.module.scss';
-import CustomInput from '../CustomInput/CustomInput';
+import CustomInput from '../../CustomInput/CustomInput';
 import { useDispatch } from 'react-redux';
-import { loginSuccess } from '../../redux/slices/userSlice';
+import { loginSuccess } from '../../../redux/slices/userSlice';
 
-import { postInstance } from '../../redux/axiosInstance';
+import { postInstance } from '../../../redux/axiosInstance';
 
 const Login = ({ changeWindow, dialog }) => {
   const handleWindowChange = () => {

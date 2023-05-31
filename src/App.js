@@ -4,13 +4,17 @@ import { Route, Routes } from 'react-router-dom';
 
 import { Header } from './components';
 import Footer from './components/Footer/Footer';
+
+import './App.scss';
 import {
-  AdminPanel,
   Contacts,
   Main,
   MuseumDetails,
   Museums,
+  ManagerPanel,
+  AdminPanel,
 } from './pages';
+
 import { checkIsAuth } from './redux/slices/userSlice';
 
 import './App.scss';
@@ -37,7 +41,11 @@ const App = () => {
           <Route path="/museums/:id" element={<MuseumDetails />} />
           <Route
             path="/adminpanel"
-            element={userRole === 'ADMIN' ? <AdminPanel /> : <></>}
+            element={userRole === 'ADMIN' ? <AdminPanel /> : null}
+          />
+          <Route
+            path="/museumpanel"
+            element={userRole === 'MANAGER' ? <ManagerPanel /> : null}
           />
         </Routes>
       </div>

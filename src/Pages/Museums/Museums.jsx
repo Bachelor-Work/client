@@ -26,7 +26,7 @@ const Museums = () => {
               key={item.id}
               id={item.id}
               name={item.museumName}
-              img={item.fileContent}
+              img={item.imgContent}
               color={item.dominantColor}
             />
           ))}

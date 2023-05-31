@@ -6,8 +6,9 @@ export const convertToImage = (string) => {
     for (let i = 0; i < byteString.length; i++) {
       uint8Array[i] = byteString.charCodeAt(i);
     }
-    const blob = new Blob([arrayBuffer], { type: 'image/png' });
+    const blob = new Blob([arrayBuffer]);
     const imageUrl = URL.createObjectURL(blob);
     return imageUrl;
   }
+  return null;
 };

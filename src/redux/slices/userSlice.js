@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-
-import { getTockenInstance } from '../axiosInstance';
+import { useTokenInstance } from '../axiosInstance';
 
 const initialState = {
   user: {
@@ -10,16 +9,17 @@ const initialState = {
     role: '',
   },
   isAuth: false,
+  token: '',
 };
 
-const setToken = (type, token) => {
-  localStorage.setItem('jwtToken', `${type}${token}`);
-};
+const setToken = (token) => localStorage.setItem('jwtToken', `${token}`);
 
 export const checkIsAuth = () => (dispatch) => {
-  getTockenInstance.get('/auth/user').then(({ data }) => {
-    dispatch(setIsAuth(data));
-  });
+  useTokenInstance(localStorage.getItem('jwtToken'))
+    .get('/auth/user')
+    .then(({ data }) => {
+      dispatch(setIsAuth(data));
+    });
 };
 
 const userSlice = createSlice({
@@ -33,7 +33,8 @@ const userSlice = createSlice({
         email: payload.email,
         role: payload.role[payload.role.length - 1],
       };
-      setToken(payload.tokenType, payload.accessToken);
+      setToken(payload.accessToken);
+      state.token = payload.accessToken;
       state.isAuth = true;
     },
     setIsAuth: (state, { payload }) => {
@@ -43,10 +44,12 @@ const userSlice = createSlice({
         email: payload.email,
         role: payload.role[payload.role.length - 1],
       };
+      state.token = localStorage.getItem('jwtToken');
       state.isAuth = true;
     },
     logout: (state) => {
       state.user = {};
+      state.token = '';
       localStorage.removeItem('jwtToken');
       state.isAuth = false;
     },

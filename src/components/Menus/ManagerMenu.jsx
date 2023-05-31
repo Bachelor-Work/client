@@ -1,11 +1,11 @@
 import React from 'react';
-import styles from './UserMenu.module.scss';
+import styles from './Menu.module.scss';
 import { Menu, MenuItem, MenuSeparator } from 'reakit/Menu';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../redux/slices/userSlice';
 
-const UserMenu = ({ menu, fullname, email, role }) => {
+const ManagerMenu = ({ menu, fullname, email }) => {
   const dispatch = useDispatch();
 
   const logOut = () => {
@@ -22,27 +22,15 @@ const UserMenu = ({ menu, fullname, email, role }) => {
         </div>
         <MenuSeparator className={styles.menuSeparator} {...menu} />
 
-        {role === 'ADMIN' ? (
-          <Link className={styles.link} to="/adminpanel">
-            <MenuItem
-              onClick={() => menu.hide()}
-              className={styles.settingsButton}
-              {...menu}
-            >
-              Admin Panel
-            </MenuItem>
-          </Link>
-        ) : (
-          <Link className={styles.link} to="/museumpanel">
-            <MenuItem
-              onClick={() => menu.hide()}
-              className={styles.settingsButton}
-              {...menu}
-            >
-              Museum Panel
-            </MenuItem>
-          </Link>
-        )}
+        <Link className={styles.link} to="/museumpanel">
+          <MenuItem
+            onClick={() => menu.hide()}
+            className={styles.settingsButton}
+            {...menu}
+          >
+            Museum Panel
+          </MenuItem>
+        </Link>
 
         <Link to="/">
           <MenuItem
@@ -58,4 +46,4 @@ const UserMenu = ({ menu, fullname, email, role }) => {
   );
 };
 
-export default UserMenu;
+export default ManagerMenu;

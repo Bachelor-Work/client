@@ -56,9 +56,19 @@ $transition-timing-function: ease-in-out;
 }
 
 .userEmail {
+  display: block;
   letter-spacing: 0.4px;
   font-size: 14px;
   color: #707070;
+  overflow: hidden;
+  display: -webkit-box;
+  white-space: nowrap;
+  -webkit-line-clamp: 7;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+
+  & > * {
+  }
 }
 
 .menuSeparator {
@@ -90,4 +100,43 @@ $transition-timing-function: ease-in-out;
 
 .logOutButton {
   color: #d50000;
+}
+
+.link {
+  background: none;
+  font-family: 'Heebo', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  border: none;
+}
+
+.backdropStyles {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  inset: 0px;
+  z-index: 999;
+  perspective: 800px;
+  transition: opacity 350ms ease-in-out;
+  opacity: 0;
+  &[data-enter] {
+    opacity: 1 !important;
+  }
+}
+
+.dialogRequestStyle {
+  position: absolute;
+  background-color: #fff;
+  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  width: 700px;
+  left: 50%;
+  top: 15%;
+  transform: translate(-50%, -50%);
+  transition: opacity 350ms ease-in-out, transform 350ms ease-in-out;
+  opacity: 0;
+  transform-origin: top center;
+  &[data-enter] {
+    opacity: 1 !important;
+    transform: translate3d(-50%, 0, 0) !important;
+  }
 }
