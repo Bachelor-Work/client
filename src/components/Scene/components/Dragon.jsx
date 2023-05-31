@@ -1,23 +1,14 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { useGLTF } from '@react-three/drei';
-import { useFrame } from '@react-three/fiber';
 import { RigidBody } from '@react-three/rapier';
 import { MeshStandardMaterial } from 'three';
 
-import { MODELS_PATH } from '../../../constants';
-
+import { MODELS_PATH } from '../constants';
 const newMaterial = new MeshStandardMaterial({ color: 'red' });
 
-export function Model(props) {
+export function Model({ clickHandler, ...props }) {
   const meshRef = useRef();
-  const [rotate, setRotate] = useState();
   const { nodes } = useGLTF(`${MODELS_PATH}/dragon.gltf`);
-
-  useFrame(() => {
-    if (rotate) {
-      meshRef.current.rotation.y += 0.01;
-    }
-  });
 
   return (
     <RigidBody type="fixed">
@@ -26,9 +17,7 @@ export function Model(props) {
           ref={meshRef}
           geometry={nodes.dragon.geometry}
           material={newMaterial}
-          onPointerDown={() => {
-            setRotate(prevState => !prevState);
-          }}
+          onPointerDown={clickHandler}
         />
       </group>
     </RigidBody>
