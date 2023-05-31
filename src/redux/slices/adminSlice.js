@@ -1,21 +1,22 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getTockenInstance, postTockenInstance } from '../axiosInstance';
+import { useTokenInstance } from '../axiosInstance';
 
 const initialState = {
   managerRequests: [],
 };
 
-export const fetchAllManagerRequests = () => (dispatch) => {
-  getTockenInstance.get('/admin').then(({ data }) => {
+export const fetchAllManagerRequests = (token) => (dispatch) => {
+  useTokenInstance(token).get('/admin').then(({ data }) => {
     dispatch(setManagerRequests(data));
   });
 };
 
-export const giveAccess = (id) => (dispatch) => {
-  postTockenInstance.post(`/admin/allow/${id}`).then(({ data }) => {
+export const giveAccess = (id, token) => (dispatch) => {
+  useTokenInstance(token).post(`/admin/allow/${id}`).then(({ data }) => {
     dispatch(setAccess(id));
   });
 };
+
 
 const adminSlice = createSlice({
   name: 'admin',

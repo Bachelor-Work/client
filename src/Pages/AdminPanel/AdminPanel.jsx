@@ -5,7 +5,7 @@ import './AdminPanel.scss';
 
 import ManagerTable from './components/Table/ManagerTable';
 import MuseumsTable from './components/Table/MuseumsTable';
-import fakeManagerData from './MOCK_MANAGER.json';
+
 import { fetchAllMuseums } from '../../redux/slices/museumSlice';
 import { fetchAllManagerRequests } from '../../redux/slices/adminSlice';
 
@@ -14,13 +14,12 @@ const AdminPanel = () => {
 
   const museums = useSelector(({ museums }) => museums.allMuseums);
   const managerRequests = useSelector(({ admin }) => admin.managerRequests);
+  const token = useSelector(({ user }) => user.token);
 
   useEffect(() => {
     dispatch(fetchAllMuseums());
-    dispatch(fetchAllManagerRequests());
+    dispatch(fetchAllManagerRequests(token))
   }, [dispatch]);
-
-  const managerData = React.useMemo(() => fakeManagerData, []);
 
   return (
     <div className="adminPanel">

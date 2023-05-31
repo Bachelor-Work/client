@@ -1,19 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import {
-  useDialogState,
-  Dialog,
-  DialogBackdrop,
-  DialogDisclosure,
-} from 'reakit/Dialog';
+import { useDialogState } from 'reakit/Dialog';
+
 import { useMenuState, MenuButton } from 'reakit/Menu';
 
 import './Header.scss';
-import Register from '../Register/Register';
-import Login from '../Login/Login';
+
 import { useSelector } from 'react-redux';
-import UserMenu from '../UserMenu/UserMenu';
 import userPhoto from '../../common/icons/itemPNG.png';
+import AuthHeaderComponent from '../AuthHeaderComponent/AuthHeaderComponent';
+
+import {UserMenu, ManagerMenu, AdminMenu} from '../Menus';
 
 const CustomLink = ({ href, title }) => {
   const location = useLocation();
@@ -34,12 +31,6 @@ const Header = () => {
 
   const isAuth = useSelector(({ user }) => user.isAuth);
   const user = useSelector(({ user }) => user.user);
-
-  const [clickListener, setClickListener] = useState();
-
-  const handleWindowChange = (value) => {
-    setClickListener(value);
-  };
 
   useEffect(() => {
     dialog.stopAnimation();
@@ -62,47 +53,25 @@ const Header = () => {
               <MenuButton className="menuButton" {...menu}>
                 <img src={userPhoto} alt="" />
               </MenuButton>
-              <UserMenu
-                menu={menu}
-                fullname={user.name}
-                email={user.email}
-                role={user.role}
-              />
+
+              {user.role === 'USER' ? (
+                <UserMenu menu={menu} fullname={user.name} email={user.email} />
+              ) : user.role === 'MANAGER' ? (
+                <ManagerMenu
+                  menu={menu}
+                  fullname={user.name}
+                  email={user.email}
+                />
+              ) : (
+                <AdminMenu
+                  menu={menu}
+                  fullname={user.name}
+                  email={user.email}
+                />
+              )}
             </div>
           ) : (
-            <>
-              <DialogDisclosure
-                className="link"
-                onClick={() => setClickListener(true)}
-                {...dialog}
-              >
-                Register
-              </DialogDisclosure>
-              <p className="separator">|</p>
-              <DialogDisclosure
-                className="link"
-                onClick={() => setClickListener(false)}
-                {...dialog}
-              >
-                Login
-              </DialogDisclosure>
-              <DialogBackdrop {...dialog} className="backdropStyles">
-                <Dialog
-                  aria-label="Welcome"
-                  {...dialog}
-                  className="dialogStyles"
-                >
-                  {clickListener ? (
-                    <Register
-                      changeWindow={handleWindowChange}
-                      dialog={dialog}
-                    />
-                  ) : (
-                    <Login changeWindow={handleWindowChange} dialog={dialog} />
-                  )}
-                </Dialog>
-              </DialogBackdrop>
-            </>
+            <AuthHeaderComponent dialog={dialog} />
           )}
         </div>
       </div>

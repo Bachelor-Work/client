@@ -39,7 +39,9 @@
 
 .formTextareaError,
 .formTextarea {
-  padding-top: 0.6rem;
+  box-sizing: border-box;
+  width: 628px;
+  padding: 0.6rem 0.8rem;
   resize: none;
   height: 7rem;
 }

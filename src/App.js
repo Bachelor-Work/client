@@ -12,6 +12,7 @@ import Contacts from './Pages/Contacts/Contacts';
 import MuseumDetails from './Pages/MuseumDetails/MuseumDetails';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkIsAuth } from './redux/slices/userSlice';
+import ManagerPanel from './Pages/ManagerPanel/ManagerPanel';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -34,7 +35,14 @@ const App = () => {
           <Route path="/contacts" element={<Contacts />} />
           <Route path="/scene" element={<Scene />} />
           <Route path="/museums/:id" element={<MuseumDetails />} />
-          <Route path="/adminpanel" element= {userRole==='ADMIN' ? <AdminPanel /> : <></>} />
+          <Route
+            path="/adminpanel"
+            element={userRole === 'ADMIN' ? <AdminPanel /> : <></>}
+          />
+          <Route
+            path="/museumpanel"
+            element={userRole === 'MANAGER' ? <ManagerPanel /> : <></>}
+          />
         </Routes>
       </div>
       <Footer />

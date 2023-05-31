@@ -8,9 +8,10 @@ import { giveAccess } from '../../../../redux/slices/adminSlice';
 
 import crossCircle from '../../../../common/icons/crossСircle.svg';
 import tickСircle from '../../../../common/icons/tickСircle.svg';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const ManagerTable = ({ data }) => {
+  const token = useSelector(({ user }) => user.token);
   const dispatch = useDispatch();
   const columns = React.useMemo(
     () => [
@@ -69,7 +70,7 @@ const ManagerTable = ({ data }) => {
       confirmButtonText: 'Yes, confirm it!',
     }).then((result) => {
       if (result.isConfirmed) {
-        dispatch(giveAccess(id));
+        dispatch(giveAccess(id, token));
         Swal.fire('Confirmed!', 'The request has been confirmed.', 'success');
       }
     });

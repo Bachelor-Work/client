@@ -5,13 +5,13 @@ import {
   unstable_FormSubmitButton as FormSubmitButton,
 } from 'reakit/Form';
 
-import { postInstance } from '../../redux/axiosInstance';
+import { postInstance } from '../../../redux/axiosInstance';
 
-import visiblePassword from '../../common/icons/eye.svg';
-import closeDialog from '../../common/icons/closeDialog.svg';
+import visiblePassword from '../../../common/icons/eye.svg';
+import closeDialog from '../../../common/icons/closeDialog.svg';
 
 import styles from './Register.module.scss';
-import CustomInput from '../CustomInput/CustomInput';
+import CustomInput from '../../CustomInput/CustomInput';
 
 const Register = ({ changeWindow, dialog }) => {
   const handleWindowChange = () => {
@@ -25,16 +25,16 @@ const Register = ({ changeWindow, dialog }) => {
 
   const form = useFormState({
     values: {
-      fullname: '',
+      nickname: '',
       email: '',
       password: '',
     },
     onValidate: (values) => {
       let errors = {};
-      if (!values.fullname && buttonListener) {
+      if (!values.nickname && buttonListener) {
         errors = {
           ...errors,
-          username: 'Mandatory info missing',
+          nickname: 'Mandatory info missing',
         };
       }
       if (!values.email && buttonListener && !response) {
@@ -70,10 +70,10 @@ const Register = ({ changeWindow, dialog }) => {
         throw errors;
       }
     },
-    onSubmit: ({ username, email, password }) => {
+    onSubmit: ({ nickname, email, password }) => {
       postInstance
         .post('auth/register', {
-          username,
+          nickname,
           email,
           password,
         })
@@ -112,10 +112,10 @@ const Register = ({ changeWindow, dialog }) => {
           <Form className={styles.form} {...form}>
             {/* FULL NAME */}
             <CustomInput
-              name="fullname"
+              name="nickname"
               placeholder="Full name"
-              value={form.values.fullname}
-              error={form.errors.fullname}
+              value={form.values.nickname}
+              error={form.errors.nickname}
               form={form}
             />
 

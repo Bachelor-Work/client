@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {getInstance} from '../axiosInstance';
+import { getInstance } from '../axiosInstance';
 
 const initialState = {
   allMuseums: [],

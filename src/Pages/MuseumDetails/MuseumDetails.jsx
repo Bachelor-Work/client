@@ -15,18 +15,22 @@ const MuseumDetails = () => {
 
   useEffect(() => {
     dispatch(fetchOneMuseum(id));
-    
+
   }, [id]);
+
+
 
   return (
     <div>
       <MuseumDetailsCart
         name={item.museumName}
         desc={item.museumDescription}
-        image={item.fileContent}
+        image={item.imgContent}
         instagramURL={item.instagramURL}
         twitterURL={item.twitterURL}
       />
+      
+
     </div>
   );
 };
