@@ -1,8 +1,9 @@
-import { Suspense } from 'react';
+import { Suspense, useEffect } from 'react';
 import { PointerLockControls, Sky, Stats } from '@react-three/drei';
 import { Physics } from '@react-three/rapier';
 
-import { MODELS_PATH } from '../../../constants';
+import { MODELS_PATH } from '../constants';
+import { useARPopup } from '../context';
 import { Model as DragonModel } from './Dragon';
 import Lights from './Lights';
 import Player from './Player';
@@ -15,18 +16,22 @@ const models = [
   { modelPath: `${MODELS_PATH}/dragon.obj`, position: [20, 0, 40] },
 ];
 
-const Experience = () => (
-  <Suspense loader={<Progress />}>
-    <Lights />
-    <Sky />
-    <Physics>
-      <Room />
-      <Player />
-      {models.map((m, i) => <DragonModel key={i} {...m} />)}
-    </Physics>
-    <PointerLockControls />
-    <Stats />
-  </Suspense>
-);
+const Experience = () => {
+  const { openARPopup } = useARPopup();
+
+  return (
+    <Suspense loader={<Progress />}>
+      <Lights />
+      <Sky />
+      <Physics>
+        <Room />
+        <Player />
+        {models.map((m, i) => <DragonModel key={i} {...m} clickHandler={openARPopup} />)}
+      </Physics>
+      <PointerLockControls />
+      <Stats />
+    </Suspense>
+  );
+}
 
 export default Experience;
